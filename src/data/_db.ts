@@ -1,7 +1,7 @@
 let companies = [
-    { id: '1', name: 'Calsoft Inc' },
-    { id: '2', name: 'AXIS Capital' },
-    { id: '3', name: 'Canada Revenue Agency' },
+    { id: '1', name: 'Calsoft Inc', duration_id: '1', location_id: '1' },
+    { id: '2', name: 'AXIS Capital', duration_id: '2', location_id: '3' },
+    { id: '3', name: 'Canada Revenue Agency', duration_id: '3', location_id: '2' },
 ]
 
 let durations = [

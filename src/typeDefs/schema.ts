@@ -3,6 +3,9 @@ export const typeDefs = `#graphql
     type Company {
         id: ID!
         name: String!
+        duration: Duration!
+        projects: [Project!]!
+        location: Location!
     }
 
     type Duration {
@@ -15,11 +18,13 @@ export const typeDefs = `#graphql
         id: ID!
         country: String
         province: String
+        companies: [Company!]
     }
 
     type Project {
         id: ID!
         title: String
+        company: Company!
     }
 
     type Query {
@@ -29,5 +34,22 @@ export const typeDefs = `#graphql
         location(id: ID!): Location
         projects: [Project]
         project(id: ID!): Project
+        durations: [Duration]
+    }
+
+    type Mutation {
+        deleteProject(id: ID!): [Project]
+        addLocation(location: AddLocationInput): Location
+        updateDuration(id: ID!, duration: UpdateDurationInput): Duration
+    }
+
+    input AddLocationInput {
+        country: String!
+        province: String!
+    }
+
+    input UpdateDurationInput{
+        from: String
+        to: String
     }
 `
