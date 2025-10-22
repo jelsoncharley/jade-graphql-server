@@ -1,28 +1,29 @@
 
 export const typeDefs = `#graphql
     type Company {
-        id: ID!
+        _id: ID!
         name: String!
+        image: String
         duration: Duration!
         projects: [Project!]!
         location: Location!
     }
 
     type Duration {
-        id: ID!
+        _id: ID!
         from: String
         to: String
     }
 
     type Location {
-        id: ID!
+        _id: ID!
         country: String
         province: String
         companies: [Company!]
     }
 
     type Project {
-        id: ID!
+        _id: ID!
         title: String
         company: Company!
     }

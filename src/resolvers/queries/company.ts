@@ -1,8 +1,10 @@
 import db from "../../data/_db.js";
 
-export const companies = () => db.companies
+// export const companies = () => db.companies
 
-export const company = (parent, args, context) => db.companies.find((company) => company.id === args.id)
+export const companies = (parent, args, context) => context.mongodb.collection('company').find().toArray()
+
+export const company = (parent, args, context) => db.companies.find((company) => company._id === args.id)
 
 // export const projects = (parent) => db.projects.filter((project) => project.company_id === parent.id)
 
