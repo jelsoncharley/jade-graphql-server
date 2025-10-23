@@ -19,24 +19,24 @@ export const resolvers = {
         durations
     },
     Company: {
-        projects(parent) {
-            return db.projects.filter((project) => project.company_id === parent.id)
+        projects(parent, args, context) {
+            return context.mongodb.collection('project').find({ companyId: parseInt(parent.id) }).toArray()
         },
-        duration(parent) {
-            return db.durations.find((duration) => duration._id === parent.duration_id)
+        duration(parent, args, context) {
+            return context.mongodb.collection('duration').findOne({ id: parseInt(parent.durationId) })
         },
-        location(parent) {
-            return db.locations.find((location) => location._id === parent.location_id)
+        location(parent, args, context) {
+            return context.mongodb.collection('location').findOne({ id: parseInt(parent.locationId) })
         }
     },
     Location: {
-        companies(parent) {
-            return db.companies.filter((company) => company.location_id === parent.id)
+        companies(parent, args, context) {
+            return context.mongodb.collection('company').find({ locationId: parseInt(parent.id) }).toArray()
         }
     },
     Project: {
-        company(parent) {
-            return db.companies.find((company) => company._id === parent.company_id)
+        company(parent, args, context) {
+            return context.mongodb.collection('company').findOne({ id: parseInt(parent.companyId) })
         }
     },
     Mutation: {

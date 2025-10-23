@@ -1,7 +1,7 @@
 
 export const typeDefs = `#graphql
     type Company {
-        _id: ID!
+        id: ID!
         name: String!
         image: String
         duration: Duration!
@@ -10,20 +10,20 @@ export const typeDefs = `#graphql
     }
 
     type Duration {
-        _id: ID!
+        id: ID!
         from: String
         to: String
     }
 
     type Location {
-        _id: ID!
+        id: ID!
         country: String
         province: String
         companies: [Company!]
     }
 
     type Project {
-        _id: ID!
+        id: ID!
         title: String
         company: Company!
     }

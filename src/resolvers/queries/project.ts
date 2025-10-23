@@ -1,5 +1,3 @@
-import db from "../../data/_db.js"
+export const projects = (parent, args, context) => context.mongodb.collection('project').find().toArray()
 
-export const projects = () => db.projects
-
-export const project = (parent, args, context) => db.projects.find((project) => project._id === args.id)
+export const project = (parent, args, context) => context.mongodb.collection('project').findOne({ id: parseInt(args.id) })
