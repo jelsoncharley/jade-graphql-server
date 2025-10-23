@@ -1,10 +1,12 @@
 import db from '../../data/_db.js'
 
-export const addLocation = (parent, args, context) => {
-    let location = {
-        ...args.location,
-        _id: Math.floor(Math.random() * 100).toString()
-    }
-    db.locations.push(location)
-    return location
+export const addLocation = async (parent, args, context) => {
+    let records = await context.mongodb.collection('location').find().toArray()
+
+    await context.mongodb.collection('location').insertOne({
+        id: records.length + 1,
+        ...args.location
+    })
+
+    return await context.mongodb.collection('location').findOne({ id: records.length + 1 })
 }

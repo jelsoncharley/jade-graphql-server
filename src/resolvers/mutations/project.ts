@@ -1,6 +1,6 @@
 import db from "../../data/_db.js"
 
-export const deleteProject = (parent, args, context) => {
-    db.projects = db.projects.filter((project) => project.id !== args.id)
-    return db.projects
+export const deleteProject = async (parent, args, context) => {
+    await context.mongodb.collection('project').deleteOne({ id: parseInt(args.id) })
+    return context.mongodb.collection('project').find().toArray()
 }
